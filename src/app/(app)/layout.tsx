@@ -1,4 +1,3 @@
-import Background from "@/components/shared/background";
 import Navbar from "@/components/shared/navbar";
 import React from "react";
 
@@ -8,10 +7,11 @@ type Props = {
 
 export default function AppLayout({ children }: Props) {
   return (
-    <div className="font-firaCode">
-      <Background />
-      <Navbar />
-      <main className="container mx-auto px-6">{children}</main>
+    <div className="font-firaCode bg-brand-eunry-200 min-h-screen">
+      <section className="bg-brand-white-100  max-w-screen-xl mx-auto border-4 rounded-lg shadow-brand-y-md">
+        <Navbar />
+        <main className="p-6">{children}</main>
+      </section>
     </div>
   );
 }
