@@ -10,7 +10,7 @@ export default function AppLayout({ children }: Props) {
     <div className="font-firaCode bg-brand-eunry-200 min-h-screen">
       <section className="bg-brand-white-100  max-w-screen-xl mx-auto border-4 rounded-lg shadow-brand-y-md">
         <Navbar />
-        <main className="p-6">{children}</main>
+        <main>{children}</main>
       </section>
     </div>
   );

@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      transitionDuration: {
+        "2000": "2s",
+        "3000": "3s",
+      },
       borderColor: {
         DEFAULT: "hsl(var(--border))",
       },
@@ -17,15 +21,23 @@ const config: Config = {
       boxShadow: {
         "brand-y-md": "0 4px",
         "brand-y-lg": "0 6px",
+        "brand-y-xl": "0 8px",
+        "brand-y-2xl": "0 10px",
         "brand-x-md": "4px 0",
         "brand-x-lg": "4px 0",
+        "brand-x-xl": "8px 0",
+        "brand-x-2xl": "10px 0",
         "brand-br-md": "4px 4px",
         "brand-br-lg": "6px 6px",
+        "brand-br-xl": "8px 8px",
+        "brand-br-2xl": "10px 10px",
       },
 
       translate: {
         "brand-md": "4px",
         "brand-lg": "6px",
+        "brand-xl": "8px",
+        "brand-2xl": "10px",
       },
 
       fontFamily: {
