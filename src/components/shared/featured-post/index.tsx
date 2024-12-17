@@ -2,6 +2,7 @@ import { Iterate } from "@/components/utility";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import SectionWrapper from "../section-wrapper";
 
 const featuredPosts = [
   {
@@ -41,47 +42,45 @@ const featuredPosts = [
 
 export default function FeaturedPost() {
   return (
-    <section className="bg-brand-white-50 py-20">
-      <div className="px-4">
-        <h2 className="mb-12 font-mono text-4xl font-black">FEATURED_POSTS</h2>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <Iterate
-            items={featuredPosts}
-            render={(item, idx) => (
-              <article
-                key={idx}
-                className="group relative rounded-none border-4 bg-brand-white-50 p-4 shadow-brand-br-xl transition-all hover:translate-x-brand-lg hover:translate-y-brand-lg hover:shadow-none"
-              >
-                <div className="aspect-video overflow-hidden border-2">
-                  <Image
-                    src={item.image}
-                    alt={item.title}
-                    height={200}
-                    width={200}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="mt-4 space-y-2">
-                  <span
-                    className="inline-block rounded-none border-2 bg-yellow-400 px-2 py-1 font-mono text-sm"
-                    style={{ backgroundColor: item.genre.color }}
-                  >
-                    {item.genre.name}
-                  </span>
-                  <h3 className="font-mono text-xl font-bold">{item.title}</h3>
-                  <p className="text-sm text-gray-600">{item.excerpt}</p>
-                </div>
-                <Link
-                  href={`/blog/${item.slug}`}
-                  className="absolute bottom-4 right-4 rounded-full border-2 bg-brand-green-400 p-2 opacity-0 transition-opacity group-hover:opacity-100"
+    <SectionWrapper className="bg-brand-white-50">
+      <h2 className="mb-12 font-mono text-4xl font-black">FEATURED_POSTS</h2>
+      <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <Iterate
+          items={featuredPosts}
+          render={(item, idx) => (
+            <article
+              key={idx}
+              className="group relative rounded-none border-4 bg-brand-white-50 p-4 shadow-brand-br-xl transition-all hover:translate-x-brand-lg hover:translate-y-brand-lg hover:shadow-none"
+            >
+              <div className="aspect-video overflow-hidden border-2">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  height={200}
+                  width={200}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="mt-4 space-y-2">
+                <span
+                  className="inline-block rounded-none border-2 bg-yellow-400 px-2 py-1 font-mono text-sm"
+                  style={{ backgroundColor: item.genre.color }}
                 >
-                  <ArrowUpRight size={24} />
-                </Link>
-              </article>
-            )}
-          />
-        </div>
+                  {item.genre.name}
+                </span>
+                <h3 className="font-mono text-xl font-bold">{item.title}</h3>
+                <p className="text-sm text-gray-600">{item.excerpt}</p>
+              </div>
+              <Link
+                href={`/blog/${item.slug}`}
+                className="absolute bottom-4 right-4 rounded-full border-2 bg-brand-green-400 p-2 opacity-0 transition-opacity group-hover:opacity-100"
+              >
+                <ArrowUpRight size={24} />
+              </Link>
+            </article>
+          )}
+        />
       </div>
-    </section>
+    </SectionWrapper>
   );
 }

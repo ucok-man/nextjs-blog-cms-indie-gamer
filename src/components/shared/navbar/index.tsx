@@ -11,8 +11,8 @@ import { Icons } from "../icons";
 
 export default function Navbar() {
   return (
-    <nav className="max-w-screen-xl mx-auto sticky top-0 z-50 bg-brand-green-400 p-4 shadow-brand-y-lg">
-      <div className="flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-brand-green-400 shadow-brand-y-xl">
+      <div className="flex items-center justify-between lg:px-24 py-2 px-6">
         {/* LOGO */}
         <Link
           href="/"

@@ -7,11 +7,13 @@ type Props = {
 
 export default function AppLayout({ children }: Props) {
   return (
-    <div className="font-firaCode bg-brand-eunry-200 min-h-screen">
-      <section className="bg-brand-white-100  max-w-screen-xl mx-auto border-4 rounded-lg shadow-brand-y-md">
-        <Navbar />
-        <main>{children}</main>
-      </section>
+    <div className="font-firaCode min-h-screen">
+      <Navbar />
+      <div className="min-h-screen bg-brand-white-50 lg:p-24">
+        <div className="relative mx-auto overflow-hidden rounded-none border-8 shadow-brand-br-xl">
+          <main>{children}</main>
+        </div>
+      </div>
     </div>
   );
 }

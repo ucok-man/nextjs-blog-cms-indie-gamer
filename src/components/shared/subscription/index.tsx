@@ -1,13 +1,14 @@
 import { Mail } from "lucide-react";
+import SectionWrapper from "../section-wrapper";
 
 export default function Subscription() {
   return (
-    <section className="bg-brand-green-400 py-10">
+    <SectionWrapper className="bg-brand-green-400">
       <div className="flex flex-col items-center space-y-8 text-center">
         <h2 className="font-mono text-4xl font-black lg:text-5xl">
           JOIN_OUR_NEWSLETTER
         </h2>
-        <p className="max-w-2xl text-xl">
+        <p className="mb-4 max-w-4xl">
           Stay updated with the latest articles, tips, and insights from our
           blog. No spam, just pure value delivered to your inbox.
         </p>
@@ -26,6 +27,6 @@ export default function Subscription() {
           </button>
         </form>
       </div>
-    </section>
+    </SectionWrapper>
   );
 }
