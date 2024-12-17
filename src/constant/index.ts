@@ -46,3 +46,41 @@ export const AUTHOR = {
   image: "/junggle.png",
   bio: "Jane has been immersed in gaming and web development for over a decade. As a lifelong gamer and skilled developer, she combines her technical expertise with a deep appreciation for the artistry behind indie games.",
 };
+
+export const POSTS_DUMMY = [
+  {
+    title: "The Future of Web Design: Neo Brutalism",
+    excerpt:
+      "Explore how Neo Brutalism is shaping modern web design with its bold, unapologetic approach to visual hierarchy and user experience.",
+    date: "Dec 16, 2023",
+    category: "Design",
+    imageUrl: "/placeholder.svg?height=400&width=600",
+    href: "/post/1",
+  },
+  {
+    title: "Building Accessible Web Applications",
+    excerpt:
+      "Learn the essential practices for creating web applications that are accessible to everyone, regardless of their abilities.",
+    date: "Dec 15, 2023",
+    category: "Development",
+    imageUrl: "/placeholder.svg?height=400&width=600",
+    href: "/post/1",
+  },
+  {
+    title: "Getting Started with React Server Components",
+    excerpt:
+      "A comprehensive guide to understanding and implementing React Server Components in your Next.js applications.",
+    date: "Dec 14, 2023",
+    category: "Tutorials",
+    imageUrl: "/placeholder.svg?height=400&width=600",
+    href: "/post/1",
+  },
+];
+
+export const GENRES_DUMMY = [
+  { name: "Horror", count: 42, color: "#FFB6E1" },
+  { name: "Survival", count: 38, color: "#B4FF39" },
+  { name: "Simulation", count: 27, color: "#FFE5E5" },
+  { name: "Multiplayer", count: 23, color: "#87CEEB" },
+  { name: "Narrative", count: 19, color: "#FFA500" },
+];

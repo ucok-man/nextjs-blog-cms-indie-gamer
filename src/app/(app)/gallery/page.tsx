@@ -1,32 +1,39 @@
 import { getAllPost } from "@/actions/post";
-import { If, Iterate } from "@/components/utility";
-import Image from "next/image";
+import { GenreSidebar } from "@/components/shared/genre-sidebar";
+import Heading1 from "@/components/shared/heading-1";
+import { PostCard } from "@/components/shared/post-card";
+import { SearchBox } from "@/components/shared/search-box";
+import SectionWrapper from "@/components/shared/section-wrapper";
+import { Iterate } from "@/components/utility";
+import { POSTS_DUMMY } from "@/constant";
 
 export default async function GalleryPage() {
   const posts = await getAllPost();
+
   return (
     <div>
-      <section className="relative max-h-[250px] overflow-hidden">
-        <div className="absolute inset-0 bg-black/40" />
-        <div className="abosolute top-0 left-0 inset-0 max-h-[250px]">
-          <Image
-            src="/junggle.png"
-            alt="Junggle Game"
-            width={1300}
-            height={700}
-            className="object-fill w-full h-full"
-          />
+      <SectionWrapper className="bg-brand-pink-300">
+        <Heading1>Gallery</Heading1>
+        <SearchBox containerClass="max-w-2xl lg:ml-12" />
+
+        {/* Decorative elements */}
+        <div className="absolute right-12 top-12 h-16 w-16 rounded-full border-4 border-black bg-brand-green-400" />
+        <div className="absolute right-32 top-24 h-8 w-8 border-4 border-black bg-orange-400" />
+      </SectionWrapper>
+
+      <SectionWrapper className="bg-brand-white-100">
+        <div className="grid gap-8 xl:grid-cols-[300px_1fr]">
+          <aside>
+            <GenreSidebar />
+          </aside>
+          <section className="grid gap-8 lg:grid-cols-2">
+            <Iterate
+              items={POSTS_DUMMY}
+              render={(post, idx) => <PostCard key={idx} {...post} />}
+            />
+          </section>
         </div>
-        <div className="absolute w-full h-full top-0 flex justify-center items-center">
-          <h2 className="text-amber-100 text-4xl uppercase">Gallery</h2>
-        </div>
-      </section>
-      <If condition={posts.length > 0}>
-        <Iterate
-          items={posts}
-          render={(post, idx) => <div key={idx}>{post.title}</div>}
-        />
-      </If>
+      </SectionWrapper>
     </div>
   );
 }

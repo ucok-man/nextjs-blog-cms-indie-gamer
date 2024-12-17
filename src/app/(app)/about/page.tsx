@@ -40,7 +40,7 @@ export default function AboutPage() {
       </SectionWrapper>
 
       <SectionWrapper className="z-10">
-        <Heading2>Our_Mission_&_Vision</Heading2>
+        <Heading2>Mission_Vision</Heading2>
         <div className="space-y-4 text-lg">
           <VisiMisi.mission />
           <VisiMisi.vision />
@@ -51,7 +51,7 @@ export default function AboutPage() {
       <GetInTouch />
 
       {/* DECORATION */}
-      <div className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full border-8 border-black bg-[#B4FF39]"></div>
+      <div className="z-20 absolute -bottom-5 -left-5 h-24 w-24 rounded-full border-8 border-black bg-yellow-400"></div>
       <div className="absolute -right-4 -top-4 h-24 w-24 border-8 border-black bg-[#FFE5E5]"></div>
     </div>
   );

@@ -10,7 +10,7 @@ export default function Heading1({ children, className }: Props) {
   return (
     <h1
       className={cn(
-        "mb-8 font-mono text-5xl font-black lg:text-7xl uppercase",
+        "relative mb-8 font-mono font-black text-7xl uppercase z-20 ",
         className
       )}
     >

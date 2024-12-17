@@ -47,7 +47,7 @@ function DesktopMenu() {
               <Button
                 variant="link"
                 className={cn(
-                  "text-lg uppercase font-bold border-4 p-5 m-0 bg-brand-pink-400",
+                  "text-lg uppercase font-bold border-4 p-5 m-0 bg-brand-white-100",
                   pathname === item.link &&
                     "shadow-brand-br-md scale-x-110 transition-all"
                 )}
