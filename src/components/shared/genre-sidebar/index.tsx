@@ -3,14 +3,24 @@
 import { Button } from "@/components/ui/button";
 import { If, Iterate } from "@/components/utility";
 import { GENRES_DUMMY } from "@/constant";
+import { useSearch } from "@/context/search";
 import { cn } from "@/lib/utils";
 import { Menu } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import GenreCard from "../genre-card";
 
 export function GenreSidebar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedGenre, setSelectedGenre] = useState<string | null>(null);
+  const [selectedGenre, setSelectedGenre] = useState<string>("");
+
+  const { setParams } = useSearch();
+
+  useEffect(() => {
+    setParams({
+      key: "genre",
+      value: selectedGenre,
+    });
+  }, [selectedGenre, setParams]);
 
   return (
     <div>
@@ -45,13 +55,13 @@ export function GenreSidebar() {
                 />
               )}
             />
-            <If condition={selectedGenre !== null}>
+            <If condition={selectedGenre !== ""}>
               <div>
                 <Button
                   variant={"default"}
                   className="mt-4 bg-green-400 text-lg text-black w-full shadow-black shadow-[4px_4px] transition-all font-medium border-4"
                   onClick={() => {
-                    setSelectedGenre(null);
+                    setSelectedGenre("");
                     setIsSidebarOpen(false);
                   }}
                 >
@@ -79,13 +89,13 @@ export function GenreSidebar() {
               />
             )}
           />
-          <If condition={selectedGenre !== null}>
+          <If condition={selectedGenre !== ""}>
             <div>
               <Button
                 variant={"default"}
                 className="mt-4 bg-green-400 text-lg text-black w-full shadow-black shadow-[4px_4px] transition-all font-medium border-4 py-6"
                 onClick={() => {
-                  setSelectedGenre(null);
+                  setSelectedGenre("");
                   setIsSidebarOpen(false);
                 }}
               >

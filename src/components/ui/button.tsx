@@ -14,7 +14,7 @@ const buttonVariants = cva(
           "bg-main border-2 border-border shadow-brand-br-md hover:translate-x-brand-md hover:translate-y-brand-md hover:shadow-none",
         noShadow: "bg-main border-2 border-border ",
         neutral:
-          "bg-white   border-2 border-border  shadow-brand-br-md hover:translate-x-brand-md hover:translate-y-brand-md hover:shadow-none",
+          "bg-white   border-2 border-border shadow-brand-br-md hover:translate-x-brand-md hover:translate-y-brand-md hover:shadow-none",
         reverse:
           "bg-main border-2 border-border  hover:translate-x-reverseBoxShadowX hover:translate-y-reverseBoxShadowY hover:shadow-brand-br-md ",
       },

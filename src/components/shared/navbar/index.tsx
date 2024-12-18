@@ -45,7 +45,7 @@ function DesktopMenu() {
           render={(item, idx) => (
             <Link key={idx} href={item.link} passHref className="">
               <Button
-                variant="link"
+                variant="noShadow"
                 className={cn(
                   "text-lg uppercase font-bold border-4 p-5 m-0 bg-brand-white-100",
                   pathname === item.link &&
@@ -98,7 +98,7 @@ function MobileMenu() {
             render={(item, idx) => (
               <Link key={idx} href={item.link} passHref className="">
                 <Button
-                  variant="link"
+                  variant="default"
                   className="text-3xl uppercase py-8 font-semibold border-4 shadow-brand-br-md hover:translate-x-brand-md hover:shadow-none min-w-[400px] bg-yellow-300 transition-all"
                 >
                   <span className="relative right-4 flex gap-x-4 justify-start items-center">

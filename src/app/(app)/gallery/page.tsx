@@ -3,18 +3,31 @@ import { GenreSidebar } from "@/components/shared/genre-sidebar";
 import Heading1 from "@/components/shared/heading-1";
 import { PostCard } from "@/components/shared/post-card";
 import { SearchBox } from "@/components/shared/search-box";
+import SearchButton from "@/components/shared/search-button";
 import SectionWrapper from "@/components/shared/section-wrapper";
 import { Iterate } from "@/components/utility";
 import { POSTS_DUMMY } from "@/constant";
 
-export default async function GalleryPage() {
+type Props = {
+  searchParams: {
+    query?: string;
+    genre?: string;
+    page?: string;
+  };
+};
+
+export default async function GalleryPage({ searchParams }: Props) {
   const posts = await getAllPost();
 
   return (
     <div>
       <SectionWrapper className="bg-brand-pink-300">
         <Heading1>Gallery</Heading1>
-        <SearchBox containerClass="max-w-2xl lg:ml-12" />
+
+        <div className="flex flex-col gap-4 xl:max-w-2xl items-center mx-auto">
+          <SearchBox containerClass="w-full" />
+          <SearchButton containerClass="w-full" />
+        </div>
 
         {/* Decorative elements */}
         <div className="absolute right-12 top-12 h-16 w-16 rounded-full border-4 border-black bg-brand-green-400" />
