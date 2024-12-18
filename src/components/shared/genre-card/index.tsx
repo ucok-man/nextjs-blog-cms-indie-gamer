@@ -1,4 +1,3 @@
-import { If } from "@/components/utility";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Icons } from "../icons";
@@ -9,31 +8,25 @@ interface Genre {
   count: number;
 }
 
-interface LinkProps {
-  genre: Genre;
-  selected?: never;
-  showCount?: boolean;
-  href: string;
-  nameClass?: string;
-  containerClass?: string;
-  onClick?: never;
-}
-
-interface ClickProps {
+interface Props {
   genre: Genre;
   selected?: (genreName: string) => boolean;
   showCount?: boolean;
-  href?: never;
+  href?: string;
   nameClass?: string;
   containerClass?: string;
-  onClick: (category: string) => void;
+  onClick?: (genre: string) => void;
 }
 
-type Props = LinkProps | ClickProps;
-
-export default function GenreCard(props: Props) {
-  const { genre, nameClass, containerClass, href, onClick } = props;
-
+export default function GenreCard({
+  genre,
+  selected,
+  showCount,
+  href,
+  nameClass,
+  containerClass,
+  onClick,
+}: Props) {
   const content = (
     <>
       <span
@@ -42,16 +35,14 @@ export default function GenreCard(props: Props) {
           nameClass
         )}
       >
-        <span>{genre.name}</span>{" "}
-        {props.selected?.(props.genre.name) && (
-          <Icons.logo className="size-8" />
-        )}
+        <span>{genre.name}</span>
+        {selected?.(genre.name) && <Icons.logo className="size-8" />}
       </span>
-      <If condition={props.showCount !== undefined && props.showCount === true}>
+      {showCount && (
         <span className="rounded-full bg-brand-white-100 px-3 py-1 font-mono text-sm">
-          {props.genre.count}
+          {genre.count}
         </span>
-      </If>
+      )}
     </>
   );
 
@@ -60,26 +51,19 @@ export default function GenreCard(props: Props) {
     containerClass
   );
 
-  return (
-    <If
-      condition={props.href !== undefined}
-      otherwise={
-        <div
-          className={wrapperClass}
-          style={{ backgroundColor: genre.color }}
-          onClick={() => props.onClick?.(genre.name)}
-        >
-          {content}
-        </div>
-      }
+  const style = { backgroundColor: genre.color };
+
+  return href ? (
+    <Link href={href} className={wrapperClass} style={style}>
+      {content}
+    </Link>
+  ) : (
+    <div
+      className={wrapperClass}
+      style={style}
+      onClick={() => onClick?.(genre.name)}
     >
-      <Link
-        href={href as string}
-        className={wrapperClass}
-        style={{ backgroundColor: genre.color }}
-      >
-        {content}
-      </Link>
-    </If>
+      {content}
+    </div>
   );
 }

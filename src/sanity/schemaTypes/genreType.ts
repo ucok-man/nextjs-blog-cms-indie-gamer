@@ -19,8 +19,8 @@ export const genreType = defineType({
       },
     }),
     defineField({
-      name: "description",
-      type: "text",
+      name: "color",
+      type: "string",
     }),
   ],
 });

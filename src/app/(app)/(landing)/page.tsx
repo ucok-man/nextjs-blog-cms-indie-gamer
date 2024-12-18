@@ -1,3 +1,5 @@
+import { getPopularGenres } from "@/actions/genres";
+import { getFeaturedPost } from "@/actions/posts";
 import GenreCard from "@/components/shared/genre-card";
 import Heading2 from "@/components/shared/heading-2";
 import LogoAnimation from "@/components/shared/logo-animation";
@@ -5,10 +7,14 @@ import { PostCard } from "@/components/shared/post-card";
 import SectionWrapper from "@/components/shared/section-wrapper";
 import Subscription from "@/components/shared/subscription";
 import { Iterate } from "@/components/utility";
-import { GENRES_DUMMY, POSTS_DUMMY } from "@/constant";
+import { formatTimestamp } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const featuredPosts = await getFeaturedPost();
+  const popularGenres = await getPopularGenres();
+
   return (
     <div>
       {/* Hero */}
@@ -21,14 +27,17 @@ export default function HomePage() {
               <br />
               INDIE_GAMER
             </h1>
-            <p className="max-w-md text-xl mb-8">
+            <p className="max-w-lg text-xl mb-8 leading-relaxed">
               Delve into honest reviews, unique insights, and the vibrant
               culture of indie games. Join our community of devoted enthusiasts.
             </p>
-            <button className="group flex items-center rounded-none border-4 bg-brand-green-400 px-6 py-3 font-mono text-lg font-bold shadow-brand-br-md transition-all hover:translate-x-brand-md hover:translate-y-brand-md hover:shadow-none">
+            <Link
+              href={"/gallery"}
+              className="group flex items-center rounded-none border-4 bg-brand-green-400 px-6 py-3 font-mono text-lg font-bold shadow-brand-br-md transition-all hover:translate-x-brand-md hover:translate-y-brand-md hover:shadow-none max-w-[250px]"
+            >
               Explore Posts
               <ArrowRight className="ml-2 transition-transform group-hover:translate-x-1" />
-            </button>
+            </Link>
           </div>
 
           {/* Content IMAGE */}
@@ -45,8 +54,20 @@ export default function HomePage() {
         <Heading2>FEATURED_POSTS</Heading2>
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <Iterate
-            items={POSTS_DUMMY}
-            render={(post, idx) => <PostCard key={idx} {...post} />}
+            items={featuredPosts}
+            render={(post, idx) => (
+              <PostCard
+                key={idx}
+                title={post.title}
+                date={formatTimestamp(post.publishedAt)}
+                genre={post.genre.title}
+                genreColor={post.genre.color}
+                imageUrl={post.mainImage.asset.url}
+                imageAlt={post.mainImage.alt}
+                short={post.short}
+                href={`/post/${post.slug.current}`}
+              />
+            )}
           />
         </div>
       </SectionWrapper>
@@ -55,9 +76,18 @@ export default function HomePage() {
         <h2 className="mb-12 font-mono text-4xl font-black">POPULAR_GENRES</h2>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <Iterate
-            items={GENRES_DUMMY}
+            items={popularGenres}
             render={(item, idx) => (
-              <GenreCard key={idx} href="#" genre={item} showCount />
+              <GenreCard
+                key={idx}
+                href={`/gallery?genre=${item.title}`}
+                genre={{
+                  name: item.title,
+                  color: item.color,
+                  count: item.recordCount,
+                }}
+                showCount
+              />
             )}
           />
         </div>
