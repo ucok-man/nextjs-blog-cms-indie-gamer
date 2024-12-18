@@ -23,7 +23,7 @@ export default function SearchButton({ containerClass }: Props) {
         disabled={isSearching}
         size={"sm"}
         onClick={goSearch}
-        className="border-none uppercase bg-brand-green-400 w-full font-semibold"
+        className="text-lg border-none uppercase bg-brand-green-400 w-full font-semibold p-6"
       >
         {isSearching && "Searching..."}
         {!isSearching && "Search"}

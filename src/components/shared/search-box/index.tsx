@@ -22,7 +22,7 @@ export function SearchBox({ containerClass }: Props) {
         containerClass
       )}
     >
-      <SearchIcon className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform" />
+      <SearchIcon className="absolute left-3 top-1/2 size-6 -translate-y-1/2 transform" />
       <Input
         disabled={isSearching}
         onKeyDown={(e) => {
@@ -42,19 +42,10 @@ export function SearchBox({ containerClass }: Props) {
           })
         }
         ref={inputRef}
-        className="h-12 w-full rounded-none border-4 bg-brand-white-50 pl-10 font-mono text-lg"
+        className="h-12 p-6 w-full rounded-none border-4 bg-brand-white-50 pl-10 font-mono text-lg"
         placeholder="Search post..."
+        style={{ fontSize: "1.25rem" }}
       />
-      {/* <Button
-        variant={"noShadow"}
-        disabled={isSearching}
-        size={"sm"}
-        onClick={goSearch}
-        className="absolute inset-y-0 right-0 h-full rounded-none transform"
-      >
-        {isSearching && "Searching..."}
-        {!isSearching && "Search"}
-      </Button> */}
     </div>
   );
 }

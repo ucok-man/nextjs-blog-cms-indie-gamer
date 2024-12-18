@@ -56,6 +56,9 @@ export const POSTS_DUMMY = [
     category: "Design",
     imageUrl: "/placeholder.svg?height=400&width=600",
     href: "/post/1",
+    short: "lorem ipsum dolor lorem ipsum dolor",
+    imageAlt: "Alt Image",
+    genre: "Action",
   },
   {
     title: "Building Accessible Web Applications",
@@ -65,6 +68,9 @@ export const POSTS_DUMMY = [
     category: "Development",
     imageUrl: "/placeholder.svg?height=400&width=600",
     href: "/post/1",
+    short: "lorem ipsum dolor lorem ipsum dolor",
+    imageAlt: "Alt Image",
+    genre: "Action",
   },
   {
     title: "Getting Started with React Server Components",
@@ -74,6 +80,9 @@ export const POSTS_DUMMY = [
     category: "Tutorials",
     imageUrl: "/placeholder.svg?height=400&width=600",
     href: "/post/1",
+    short: "lorem ipsum dolor lorem ipsum dolor",
+    imageAlt: "Alt Image",
+    genre: "Action",
   },
 ];
 

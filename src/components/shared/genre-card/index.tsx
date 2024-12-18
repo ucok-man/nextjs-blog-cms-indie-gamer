@@ -5,7 +5,7 @@ import { Icons } from "../icons";
 interface Genre {
   name: string;
   color: string;
-  count: number;
+  count?: number;
 }
 
 interface Props {

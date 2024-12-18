@@ -7,7 +7,7 @@ type Props = {
   short: string;
   date: string;
   genre: string;
-  genreColor: string;
+  genreColor?: string;
   imageUrl: string;
   imageAlt: string;
   href: string;
@@ -48,7 +48,9 @@ export function PostCard({
             {date}
           </time>
         </div>
-        <h3 className="font-mono text-xl font-bold">{title}</h3>
+        <h3 className="font-mono text-xl font-bold line-clamp-1 text-nowrap">
+          {title}
+        </h3>
         <p className="line-clamp-2 text-muted-foreground">{short}</p>
       </div>
       <Link

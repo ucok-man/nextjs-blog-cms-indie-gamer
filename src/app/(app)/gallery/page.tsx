@@ -1,23 +1,35 @@
-import { getAllPost } from "@/actions/post";
+import { getAllPostParams } from "@/actions/posts";
 import { GenreSidebar } from "@/components/shared/genre-sidebar";
 import Heading1 from "@/components/shared/heading-1";
+import Pagination from "@/components/shared/pagination";
 import { PostCard } from "@/components/shared/post-card";
 import { SearchBox } from "@/components/shared/search-box";
 import SearchButton from "@/components/shared/search-button";
 import SectionWrapper from "@/components/shared/section-wrapper";
-import { Iterate } from "@/components/utility";
-import { POSTS_DUMMY } from "@/constant";
+import { If, Iterate } from "@/components/utility";
+import { formatTimestamp } from "@/lib/utils";
 
 type Props = {
   searchParams: {
-    query?: string;
+    search?: string;
     genre?: string;
     page?: string;
   };
 };
 
 export default async function GalleryPage({ searchParams }: Props) {
-  const posts = await getAllPost();
+  const pageSize = 4;
+  const currentPage = Number(searchParams.page) || 1;
+
+  const {
+    data: posts,
+    meta: { resultCount },
+  } = await getAllPostParams({
+    search: searchParams.search || "",
+    genre: searchParams.genre || "",
+    start: (currentPage - 1) * pageSize,
+    end: currentPage * pageSize,
+  });
 
   return (
     <div>
@@ -39,12 +51,48 @@ export default async function GalleryPage({ searchParams }: Props) {
           <aside>
             <GenreSidebar />
           </aside>
-          <section className="grid gap-8 lg:grid-cols-2">
-            <Iterate
-              items={POSTS_DUMMY}
-              render={(post, idx) => <PostCard key={idx} {...post} />}
-            />
-          </section>
+
+          <If
+            condition={posts.length > 0}
+            otherwise={
+              <div className="flex flex-col justify-center items-center max-lg:h-[50vh]">
+                <h1 className="text-3xl font-medium tracking-wide uppercase text-center text-black/70">
+                  Whoops! We couldn&apos;t find anything 👻
+                </h1>
+                <p className="text-lg text-center text-gray-700">
+                  But don&apos;t worry, the search continues. Try looking for
+                  something else!
+                </p>
+              </div>
+            }
+          >
+            <section className="grid gap-y-16 gap-x-8 lg:grid-cols-2 max-lg:place-items-center">
+              <Iterate
+                items={posts}
+                render={(post, idx) => (
+                  <div className="lg:max-h-[500px] lg:max-w-[500px">
+                    <PostCard
+                      key={idx}
+                      title={post.title}
+                      date={formatTimestamp(post.publishedAt)}
+                      genre={post.genre.title}
+                      genreColor={post.genre.color}
+                      imageUrl={post.mainImage.asset.url}
+                      imageAlt={post.mainImage.alt}
+                      short={post.short}
+                      href={`/post/${post.slug.current}`}
+                    />
+                  </div>
+                )}
+              />
+              <div className="flex items-center justify-center space-x-4 col-span-full">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPage={Math.ceil(resultCount / pageSize)}
+                />
+              </div>
+            </section>
+          </If>
         </div>
       </SectionWrapper>
     </div>

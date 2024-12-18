@@ -1,3 +1,4 @@
+import { QueryProviders } from "@/context/query";
 import type { Metadata } from "next";
 import React from "react";
 import { firacode } from "./fonts";
@@ -15,7 +16,9 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body className={`${firacode.variable} antialiased`}>{children}</body>
+      <body className={`${firacode.variable} antialiased`}>
+        <QueryProviders>{children}</QueryProviders>
+      </body>
     </html>
   );
 }

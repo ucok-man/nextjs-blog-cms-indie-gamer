@@ -1,6 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+import queryString from "query-string";
 import {
   createContext,
   useCallback,
@@ -14,6 +15,7 @@ import {
 type ParamConstructType = {
   search: string;
   genre: string;
+  page: number;
 };
 
 type Key = keyof ParamConstructType;
@@ -21,7 +23,7 @@ type Key = keyof ParamConstructType;
 // Define the context type
 interface SearchContextType {
   paramsConstruct: ParamConstructType;
-  setParams: (input: { key: Key; value: string }) => void;
+  setParams: (input: { key: Key; value: ParamConstructType[Key] }) => void;
   goSearch: () => void;
   isSearching: boolean;
 }
@@ -37,18 +39,24 @@ export default function SearchProvider({
 }: {
   children: React.ReactNode;
 }) {
+  const searchParams = useSearchParams();
+
   // State for managing the search parameters
   const [paramsConstruct, setParamsConstruct] = useState<ParamConstructType>({
-    search: "",
-    genre: "",
+    genre: searchParams.get("genre") || "",
+    search: searchParams.get("search") || "",
+    page: Number(searchParams.get("page")) || 1,
   });
 
-  const setParams = useCallback((input: { key: Key; value: string }) => {
-    setParamsConstruct((prev) => ({
-      ...prev,
-      [input.key]: input.value,
-    }));
-  }, []);
+  const setParams = useCallback(
+    (input: { key: Key; value: ParamConstructType[Key] }) => {
+      setParamsConstruct((prev) => ({
+        ...prev,
+        [input.key]: input.value,
+      }));
+    },
+    []
+  );
 
   const [trigger, setTrigger] = useState<boolean>(true);
   const goSearch = useCallback(() => {
@@ -59,39 +67,16 @@ export default function SearchProvider({
   const [isSearching, startTransition] = useTransition();
 
   const handleSearch = () => {
-    const searchQuery = paramsConstruct.search
-      ? `search=${paramsConstruct.search}`
-      : "";
+    const sanitizedParams = {
+      genre: paramsConstruct.genre || undefined,
+      search: paramsConstruct.search || undefined,
+      page: paramsConstruct.page || undefined,
+    };
 
-    const filterQuery = paramsConstruct.genre
-      ? `genre=${paramsConstruct.genre}`
-      : "";
-
-    switch (true) {
-      case paramsConstruct.search === "" && paramsConstruct.genre == "":
-        startTransition(() => {
-          router.push(`/gallery`);
-        });
-        break;
-
-      case paramsConstruct.search !== "" && paramsConstruct.genre === "":
-        startTransition(() => {
-          router.push(`/gallery?${searchQuery}`);
-        });
-        break;
-
-      case paramsConstruct.genre !== "" && paramsConstruct.search === "":
-        startTransition(() => {
-          router.push(`/gallery?${filterQuery}`);
-        });
-        break;
-
-      case paramsConstruct.genre !== "" && paramsConstruct.search !== "":
-        startTransition(() => {
-          router.push(`/gallery?${searchQuery}&${filterQuery}`);
-        });
-        break;
-    }
+    const query = queryString.stringify(sanitizedParams);
+    startTransition(() => {
+      router.push(`/gallery?${query}`);
+    });
   };
 
   useEffect(() => {
