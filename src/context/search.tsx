@@ -48,6 +48,14 @@ export default function SearchProvider({
     page: Number(searchParams.get("page")) || 1,
   });
 
+  // State to store previous params. Used to reset the page
+  const [prevParamsConstruct, setPrevParamsConstruct] = useState<
+    Pick<ParamConstructType, "search" | "genre">
+  >({
+    genre: searchParams.get("genre") || "",
+    search: searchParams.get("search") || "",
+  });
+
   const setParams = useCallback(
     (input: { key: Key; value: ParamConstructType[Key] }) => {
       setParamsConstruct((prev) => ({
@@ -55,6 +63,7 @@ export default function SearchProvider({
         [input.key]: input.value,
       }));
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   );
 
@@ -67,6 +76,14 @@ export default function SearchProvider({
   const [isSearching, startTransition] = useTransition();
 
   const handleSearch = () => {
+    if (
+      paramsConstruct.search !== prevParamsConstruct.search ||
+      paramsConstruct.genre !== prevParamsConstruct.genre
+    ) {
+      paramsConstruct.page = 1;
+      setPrevParamsConstruct({ ...paramsConstruct });
+    }
+
     const sanitizedParams = {
       genre: paramsConstruct.genre || undefined,
       search: paramsConstruct.search || undefined,
@@ -75,7 +92,7 @@ export default function SearchProvider({
 
     const query = queryString.stringify(sanitizedParams);
     startTransition(() => {
-      router.push(`/gallery?${query}`);
+      router.push(`/gallery?${query}`, { scroll: false });
     });
   };
 
