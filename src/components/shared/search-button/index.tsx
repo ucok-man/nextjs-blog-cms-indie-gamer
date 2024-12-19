@@ -19,11 +19,10 @@ export default function SearchButton({ containerClass }: Props) {
       )}
     >
       <Button
-        variant={"noShadow"}
         disabled={isSearching}
         size={"sm"}
         onClick={goSearch}
-        className="text-lg border-none uppercase bg-brand-green-400 w-full font-semibold p-6"
+        className="text-lg border-none uppercase bg-brand-green-400 hover:bg-brand-green-400 text-black w-full font-semibold p-6"
       >
         {isSearching && "Searching..."}
         {!isSearching && "Search"}
