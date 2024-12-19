@@ -60,7 +60,7 @@ export function GenreSidebar() {
       <div className="shadow-brand-br-lg bg-yellow-300 p-6 xl:hidden border-4">
         <Button
           variant={"default"}
-          className="mb-4 bg-green-400 text-lg text-black w-full shadow-black shadow-[4px_4px] transition-all font-medium border-4"
+          className="mb-4 bg-green-400 hover:bg-green-400 text-lg text-black w-full shadow-brand-br-md hover:shadow-none hover:translate-x-brand-md hover:translate-y-brand-md  transition-all font-medium border-4"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
         >
           <span>
@@ -94,7 +94,7 @@ export function GenreSidebar() {
               <div>
                 <Button
                   variant={"default"}
-                  className="mt-4 bg-green-400 text-lg text-black w-full shadow-black shadow-[4px_4px] transition-all font-medium border-4"
+                  className="mt-4 bg-green-400 hover:bg-green-400 text-lg text-black w-full shadow-brand-br-md transition-all font-medium border-4 hover:shadow-none hover:translate-x-brand-md hover:translate-y-brand-md"
                   onClick={() => {
                     setSelectedGenre("");
                     setIsSidebarOpen(false);
@@ -131,7 +131,7 @@ export function GenreSidebar() {
             <div>
               <Button
                 variant={"default"}
-                className="mt-4 bg-green-400 text-lg text-black w-full shadow-black shadow-[4px_4px] transition-all font-medium border-4 py-6"
+                className="mt-4 bg-green-400 hover:bg-green-400 text-lg text-black w-full shadow-brand-br-md transition-all font-medium border-4 py-6 hover:shadow-none hover:translate-x-brand-md hover:translate-y-brand-md"
                 onClick={() => {
                   setSelectedGenre("");
                   setIsSidebarOpen(false);

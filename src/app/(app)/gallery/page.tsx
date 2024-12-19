@@ -9,6 +9,11 @@ import SectionWrapper from "@/components/shared/section-wrapper";
 import { If, Iterate } from "@/components/utility";
 import { formatTimestamp } from "@/lib/utils";
 
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Gallery",
+};
+
 type Props = {
   searchParams: {
     search?: string;
@@ -70,9 +75,8 @@ export default async function GalleryPage({ searchParams }: Props) {
               <Iterate
                 items={posts}
                 render={(post) => (
-                  <div className="lg:max-h-[500px] lg:max-w-[500px">
+                  <div key={post.slug.current} className="lg:max-h-[500px]">
                     <PostCard
-                      key={post.slug.current}
                       title={post.title}
                       date={formatTimestamp(post.publishedAt)}
                       genre={post.genre.title}

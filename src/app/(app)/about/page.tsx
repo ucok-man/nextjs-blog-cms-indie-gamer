@@ -9,6 +9,11 @@ import { VisiMisi } from "@/components/shared/visi-misi";
 import { Iterate } from "@/components/utility";
 import { ABOUT_HERO, AUTHOR, OUR_STORY } from "@/constant";
 
+import type { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "About",
+};
+
 export default function AboutPage() {
   return (
     <div>

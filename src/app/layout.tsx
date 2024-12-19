@@ -1,11 +1,14 @@
 import { QueryProviders } from "@/context/query";
-import type { Metadata } from "next";
 import React from "react";
 import { firacode } from "./fonts";
 import "./globals.css";
 
+import type { Metadata } from "next";
 export const metadata: Metadata = {
-  title: "Indie Gamers |",
+  title: {
+    default: "Indie Gamer",
+    template: "%s | Indie Gamer",
+  },
   description: "Indie Gamers",
 };
 

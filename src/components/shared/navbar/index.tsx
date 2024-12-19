@@ -48,7 +48,7 @@ function DesktopMenu() {
                 // variant="noShadow"
                 key={idx}
                 className={cn(
-                  "text-lg uppercase font-bold border-4 p-5 m-0 bg-brand-white-100",
+                  "text-lg uppercase font-bold border-4 p-5 m-0 bg-brand-white-100 text-black hover:bg-brand-white-100",
                   pathname === item.link &&
                     "shadow-brand-br-md scale-x-110 transition-all"
                 )}
@@ -100,7 +100,7 @@ function MobileMenu() {
               <Link key={idx} href={item.link} passHref className="">
                 <Button
                   variant="default"
-                  className="text-3xl uppercase py-8 font-semibold border-4 shadow-brand-br-md hover:translate-x-brand-md hover:shadow-none min-w-[400px] bg-yellow-300 transition-all"
+                  className="text-3xl uppercase py-8 font-semibold border-4 shadow-brand-br-md hover:translate-x-brand-md hover:shadow-none min-w-[400px] bg-yellow-300 transition-all text-black hover:bg-yellow-300"
                 >
                   <span className="relative right-4 flex gap-x-4 justify-start items-center">
                     <Icons.logo
