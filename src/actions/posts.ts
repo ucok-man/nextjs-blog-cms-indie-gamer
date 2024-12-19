@@ -2,8 +2,10 @@ import {
   All_POST_WITH_PARAMS_COUNT_QUERY,
   All_POST_WITH_PARAMS_QUERY,
   FEATURED_POST_QUERY,
+  GET_POST_BY_SLUG_QUERY,
 } from "@/constant/query";
 import { client } from "@/sanity/lib/client";
+import { Post } from "@/sanity/types";
 
 /* ---------------------------------------------------------------- */
 /*                           featured post                          */
@@ -84,4 +86,32 @@ export async function getAllPostParams(params: {
     data: data,
     meta: { resultCount: resultCount },
   } as IFetchAllPostParamsResult;
+}
+
+/* ---------------------------------------------------------------- */
+/*                         get post by slug                         */
+/* ---------------------------------------------------------------- */
+export interface IFetchPostBySlugResult {
+  mainImage: {
+    asset: {
+      url: string;
+    };
+    alt: string;
+  };
+  title: string;
+  publishedAt: string;
+  author: {
+    name: string;
+  };
+  slug: {
+    current: string;
+  };
+  body: NonNullable<Post["body"]>;
+}
+
+export async function getPostBySlug(params: {
+  slug: string;
+}): Promise<IFetchPostBySlugResult> {
+  const data = await client.fetch(GET_POST_BY_SLUG_QUERY, params);
+  return data as IFetchPostBySlugResult;
 }

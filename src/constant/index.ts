@@ -43,7 +43,7 @@ export const SOSMEDS = [
 export const AUTHOR = {
   name: "Jane Doe",
   role: "Founder & Editor-in-Chief",
-  image: "/junggle.png",
+  image: "/profile.png",
   bio: "Jane has been immersed in gaming and web development for over a decade. As a lifelong gamer and skilled developer, she combines her technical expertise with a deep appreciation for the artistry behind indie games.",
 };
 

@@ -44,3 +44,24 @@ export function formatTimestamp(timestamp: Date | string): string {
     return `${years} ${years === 1 ? "year" : "years"} ago`;
   }
 }
+
+export function formatdate(date: Date | string): string {
+  if (typeof date === "string") {
+    date = new Date(date);
+  }
+
+  // Extract day, month, and year from the Date object
+  const day = date.getDate();
+  const month = date.toLocaleString("default", { month: "long" });
+  const year = date.getFullYear();
+
+  const formattedDate = `${month} ${day}, ${year}`;
+  return formattedDate;
+}
+
+export function toTitleCase(str: string) {
+  return str.replace(
+    /\w\S*/g,
+    (text) => text.charAt(0).toUpperCase() + text.substring(1).toLowerCase()
+  );
+}

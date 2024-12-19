@@ -67,3 +67,21 @@ count(*[_type == "post" &&
   (!defined($genre) || $genre == "" || genre->title == $genre)
 ])
 `;
+
+export const GET_POST_BY_SLUG_QUERY = `
+*[_type == "post" && slug.current == $slug][0] {
+  mainImage {
+    asset-> {
+      url
+    },
+    alt
+  },
+  title,
+  publishedAt,
+  author-> {
+    name
+  },
+  body,
+  slug
+}
+`;

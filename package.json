@@ -11,6 +11,7 @@
     "schema:gen": "sanity typegen generate"
   },
   "dependencies": {
+    "@portabletext/react": "^3.2.0",
     "@radix-ui/react-slot": "^1.1.1",
     "@sanity/icons": "^3.5.3",
     "@sanity/image-url": "1",
