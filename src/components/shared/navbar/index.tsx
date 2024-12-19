@@ -45,7 +45,8 @@ function DesktopMenu() {
           render={(item, idx) => (
             <Link key={idx} href={item.link} passHref className="">
               <Button
-                variant="noShadow"
+                // variant="noShadow"
+                key={idx}
                 className={cn(
                   "text-lg uppercase font-bold border-4 p-5 m-0 bg-brand-white-100",
                   pathname === item.link &&

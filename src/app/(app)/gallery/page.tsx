@@ -69,10 +69,10 @@ export default async function GalleryPage({ searchParams }: Props) {
             <section className="grid gap-y-16 gap-x-8 lg:grid-cols-2 max-lg:place-items-center">
               <Iterate
                 items={posts}
-                render={(post, idx) => (
+                render={(post) => (
                   <div className="lg:max-h-[500px] lg:max-w-[500px">
                     <PostCard
-                      key={idx}
+                      key={post.slug.current}
                       title={post.title}
                       date={formatTimestamp(post.publishedAt)}
                       genre={post.genre.title}

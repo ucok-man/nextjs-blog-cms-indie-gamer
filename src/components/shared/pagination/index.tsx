@@ -13,6 +13,7 @@ export default function Pagination({ currentPage, totalPage }: Props) {
   return (
     <>
       <PaginationButton
+        key={"prev"}
         direction="prev"
         currentPage={currentPage}
         disabled={currentPage <= 1}
@@ -21,6 +22,7 @@ export default function Pagination({ currentPage, totalPage }: Props) {
         Page {currentPage} of {totalPage}
       </span>
       <PaginationButton
+        key={"next"}
         direction="next"
         currentPage={currentPage}
         disabled={currentPage >= totalPage}
@@ -54,7 +56,7 @@ function PaginationButton({
 
   return (
     <div
-      // href={disabled ? "#" : href}
+      key={direction}
       onClick={handleClick}
       className={cn(
         `group flex items-center rounded-none border-4 bg-green-400 px-4 py-2 font-mono text-lg font-bold cursor-pointer`,

@@ -13,8 +13,8 @@ export default function GetInTouch() {
         </Heading2>
         <p className="text-pretty mb-4 max-w-2xl max-lg:text-left">
           We love hearing from our community! Whether you have a question, want
-          to collaborate, or just want to say hello, don't hesitate to reach
-          out.
+          to collaborate, or just want to say hello, don&apos;t hesitate to
+          reach out.
         </p>
         <div className="flex flex-wrap gap-4">
           <Iterate
