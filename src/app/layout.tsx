@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     default: "Indie Gamer",
     template: "%s | Indie Gamer",
   },
-  description: "Indie Gamers",
+  description: "The best indie games reviewed for you",
 };
 
 type Props = {
