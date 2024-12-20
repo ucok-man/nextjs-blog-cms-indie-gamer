@@ -23,7 +23,7 @@ export default function GetInTouch() {
               <Link
                 key={idx}
                 href={item.href}
-                className="group flex items-center rounded-none border-4 border-black bg-white px-4 py-2 font-mono text-lg font-bold shadow-[4px_4px_0_0_rgba(0,0,0,1)] transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
+                className="group flex items-center rounded-none border-4 bg-white px-4 py-2 font-mono text-lg font-bold shadow-brand-br-md transition-all hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none"
               >
                 <item.icon className="mr-2 h-6 w-6" />
                 {item.label}

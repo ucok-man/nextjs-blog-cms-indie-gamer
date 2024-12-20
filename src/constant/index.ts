@@ -26,17 +26,17 @@ export const SOSMEDS = [
   {
     icon: Mail,
     label: "Email Us",
-    href: "mailto:hello@bloghaus.com",
+    href: "mailto:support@indiegamer.com",
   },
   {
     icon: Github,
     label: "GitHub",
-    href: "https://github.com/bloghaus",
+    href: "https://github.com",
   },
   {
     icon: Twitter,
     label: "Twitter",
-    href: "https://twitter.com/bloghaus",
+    href: "https://twitter.com",
   },
 ];
 
